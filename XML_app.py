@@ -136,7 +136,7 @@ display = sg.Window('Transit Times',
                     )
 print("Screen Dimensions set to: " + str(w_ratio*width) + str(h_ratio*height))
 count = 0
-while count < 2:
+while True:
     table_data = populate_table()
     count += 1
     print("Iteration: " + str(count) + " of 1000. Test capped at 1000.")
