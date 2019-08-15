@@ -1,11 +1,19 @@
 FROM balenalib/raspberrypi3:buster
 
 # Install desktop environment
+COPY requirements.txt /
+
 RUN install_packages xserver-xorg-core \
     xinit lxsession desktop-file-utils \
     raspberrypi-ui-mods rpd-icons \
     gtk2-engines-clearlookspix \
-    matchbox-keyboard
+    python3 \
+    python3-tk \
+    python3-pip \
+    matchbox-keyboard \
+    xterm
+
+RUN pip3 install -r requirements.txt
 
 # disable lxpolkit popup warning
 RUN mv /usr/bin/lxpolkit /usr/bin/lxpolkit.bak
@@ -17,6 +25,7 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
 # Setting working directory
 WORKDIR /usr/src/app
 
+COPY . /usr/src/app
 COPY start.sh start.sh
 
 # Adding things to autostart will cause them to be launchd automatically on starup
