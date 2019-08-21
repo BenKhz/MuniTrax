@@ -6,10 +6,14 @@ export DISPLAY=:0
 export DBUS_SYSTEM_BUS_ADDRESS=unix:path=/host/run/dbus/system_bus_socket
 echo "Starting X in 2 seconds"
 sleep 2
-python3 XML_app.py
+startx
 
 while :
 do
 	echo "startx failed, so we will just wait here while you debug!"
-	sleep 30
+	sleep 15
+
 done
+
+echo "Attempting to start Muni Traxxor!"
+python3 XML_app.py
