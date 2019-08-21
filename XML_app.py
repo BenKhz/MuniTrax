@@ -109,33 +109,33 @@ table_data = populate_table()   # initial table population.
 table_form = [[sg.Image(filename=r'./JCCSF.png',
                         size=(400,200)),
                 sg.Text(greeting_text,
-                            font="Helvitica " + str(int(28)) + " bold",
+                            font="Helvitica " + str(int(28*w_ratio)) + " bold",
                             justification='center',)],
                 [sg.Table(values=table_data,
                             headings=table_headers,
                         #    size=(1600, 900),
                             max_col_width=999,
-                            font="Helvitica " + str(int(24)) + " bold",
+                            font="Helvitica " + str(int(24*w_ratio)) + " bold",
                             auto_size_columns=False,
-                            col_widths=[int(5),int(55),int(50),int(40)],
+                            col_widths=[int(5*w_ratio),int(55*w_ratio),int(50*w_ratio),int(40*w_ratio)],
                         #    def_col_width=100,
                             justification='center',
                         #    alternating_row_color='lightblue',
                             num_rows=min(len(table_data), 10),
                             hide_vertical_scroll=True,
-                            row_height=int(70),
+                            row_height=int(68*h_ratio),
                             key='table')
                             ]]
 
 
 display = sg.Window('Transit Times',
                     table_form,
-                    size=(int(width) ,int(height)),
+                    size=(int(width*w_ratio) ,int(height*h_ratio)),
                     no_titlebar=True,
                     location=(0,0),
                     keep_on_top=True,
                     )
-print("Screen Dimensions set to: " + str(width) + "x" + str(height))
+print("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
 count = 0
 while True:
     table_data = populate_table()
