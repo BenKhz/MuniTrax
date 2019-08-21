@@ -71,8 +71,8 @@ def parse_xml():    # working generator function.
                         min_list.append(elems.get('minutes'))
                         min_count += 1
                     else:
+                        min_list.append('Min')
                         break
-                    min_list.append('Min')
                 row_data = []
                 route = i.get('routeTag')
                 stop = i.get('stopTitle')
@@ -81,8 +81,7 @@ def parse_xml():    # working generator function.
                 row_data.append(direct)
                 row_data.append(stop)
                 row_data.append(min_list)
-                yield (row_data)    # make return row data.
-            #    return row_data
+                yield (row_data)
         except IndexError:
             print("No 'direction' tag in " + i.get('routeTitle'))
 
@@ -106,20 +105,20 @@ def populate_table():
 
 table_data = populate_table()   # initial table population.
 
-table_form = [[sg.Text(greeting_text,
+table_form = [[sg.Image(filename=r'./JCCSF.png',
+                        size=(400,200)),
+                sg.Text(greeting_text,
                             font="Helvitica " + str(int(28*w_ratio)) + " bold",
-                            justification='center',)],
+                            justification='center')],
+                        #    align='center')],
                 [sg.Table(values=table_data,
                             headings=table_headers,
-                        #    size=(1600, 900),
                             max_col_width=999,
-                            font="Helvitica " + str(int(24*w_ratio)) + " bold",
+                            font="Helvitica " + str(int(20*w_ratio)) + " bold",
                             auto_size_columns=False,
                             col_widths=[int(5*w_ratio),int(55*w_ratio),int(50*w_ratio),int(40*w_ratio)],
-                        #    def_col_width=100,
                             justification='center',
-                        #    alternating_row_color='lightblue',
-                            num_rows=min(len(table_data), 10),
+                            num_rows=min(len(table_data), 9),
                             hide_vertical_scroll=True,
                             row_height=int(68*h_ratio),
                             key='table')
@@ -141,7 +140,7 @@ while True:
     print("Iteration: " + str(count) + " of 1000. Test capped at 1000.")
     event, values = display.Read(timeout=10000)
     display.FindElement('table').Update(values=table_data,
-                                num_rows=min(len(table_data), 10)
+                                num_rows=min(len(table_data), 14)
                                 )
 print(logo)
 time.sleep(2)
