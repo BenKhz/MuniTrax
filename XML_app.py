@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 import requests
 
 import PySimpleGUI as sg
-import tkinter as tk
+#import tkinter as tk
 
 logo = """
  __ __ _  _ __  _ _   _____ ___  __ __   ____   ____  ___   _
@@ -25,11 +25,11 @@ For deployment, increase while loop count or otherwise create a better loop.
 """
 
 ###  Global Variables for Window creation via tkinter and PySimpleGUI  ###
-monitor = tk.Tk()
-height = 900
-width = 1600
-h_ratio = (monitor.winfo_screenheight() / height)
-w_ratio = (monitor.winfo_screenwidth() / width)
+#monitor = tk.Tk()
+height = 768
+width = 1366
+#h_ratio = (monitor.winfo_screenheight() / height)
+#w_ratio = (monitor.winfo_screenwidth() / width)
 stopList = ["13893", "13892", "16089", "16090", "16088"]
 predict = {}
 testurl = "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId="
@@ -67,10 +67,11 @@ def parse_xml():    # working generator function.
                 min_list = []
                 min_count = 0
                 for elems in predict_list:
-                    if min_count < 3:
+                    if min_count < 2:
                         min_list.append(elems.get('minutes'))
                         min_count += 1
                     else:
+                        min_list.append('Min')
                         break
                 row_data = []
                 route = i.get('routeTag')
@@ -108,33 +109,33 @@ table_data = populate_table()   # initial table population.
 table_form = [[sg.Image(filename=r'./JCCSF.png',
                         size=(400,200)),
                 sg.Text(greeting_text,
-                            font="Helvitica " + str(int(28*h_ratio)) + " bold",
+                            font="Helvitica " + str(int(28)) + " bold",
                             justification='center',)],
                 [sg.Table(values=table_data,
                             headings=table_headers,
                         #    size=(1600, 900),
                             max_col_width=999,
-                            font="Helvitica " + str(int(24*h_ratio)) + " bold",
+                            font="Helvitica " + str(int(24)) + " bold",
                             auto_size_columns=False,
-                            col_widths=[int(5*w_ratio),int(55*w_ratio),int(50*w_ratio),int(40*w_ratio)],
+                            col_widths=[int(5),int(55),int(50),int(40)],
                         #    def_col_width=100,
                             justification='center',
                         #    alternating_row_color='lightblue',
                             num_rows=min(len(table_data), 10),
                             hide_vertical_scroll=True,
-                            row_height=int((70*h_ratio)-1),
+                            row_height=int(70),
                             key='table')
                             ]]
 
 
 display = sg.Window('Transit Times',
                     table_form,
-                    size=(int(width * w_ratio) ,int(height * h_ratio)),
+                    size=(int(width) ,int(height)),
                     no_titlebar=True,
                     location=(0,0),
                     keep_on_top=True,
                     )
-print("Screen Dimensions set to: " + str(w_ratio*width) + str(h_ratio*height))
+print("Screen Dimensions set to: " + str(width) + "x" + str(height))
 count = 0
 while True:
     table_data = populate_table()
