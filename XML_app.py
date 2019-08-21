@@ -71,8 +71,8 @@ def parse_xml():    # working generator function.
                         min_list.append(elems.get('minutes'))
                         min_count += 1
                     else:
-                        min_list.append('Min')
                         break
+                    min_list.append('Min')
                 row_data = []
                 route = i.get('routeTag')
                 stop = i.get('stopTitle')
@@ -106,9 +106,7 @@ def populate_table():
 
 table_data = populate_table()   # initial table population.
 
-table_form = [[sg.Image(filename=r'./JCCSF.png',
-                        size=(400,200)),
-                sg.Text(greeting_text,
+table_form = [[sg.Text(greeting_text,
                             font="Helvitica " + str(int(28*w_ratio)) + " bold",
                             justification='center',)],
                 [sg.Table(values=table_data,
