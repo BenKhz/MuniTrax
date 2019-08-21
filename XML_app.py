@@ -120,7 +120,7 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',
                             justification='center',
                             num_rows=min(len(table_data), 14),
                             hide_vertical_scroll=True,
-                            row_height=int(55*h_ratio),
+                            row_height=int(40*h_ratio),
                             key='table')
                             ]]
 
