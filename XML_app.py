@@ -106,7 +106,7 @@ def populate_table():
 table_data = populate_table()   # initial table population.
 
 table_form = [[sg.Image(filename=r'./JCCSF.png',
-                        size=(400,200)),
+                        size=(208,173)),
                 sg.Text(greeting_text,
                             font="Helvitica " + str(int(28*w_ratio)) + " bold",
                             justification='center')],
@@ -118,9 +118,9 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',
                             auto_size_columns=False,
                             col_widths=[int(5*w_ratio),int(55*w_ratio),int(50*w_ratio),int(40*w_ratio)],
                             justification='center',
-                            num_rows=min(len(table_data), 9),
+                            num_rows=min(len(table_data), 14),
                             hide_vertical_scroll=True,
-                            row_height=int(68*h_ratio),
+                            row_height=int(55*h_ratio),
                             key='table')
                             ]]
 
