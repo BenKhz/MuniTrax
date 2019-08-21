@@ -5,7 +5,7 @@ import xml.etree.ElementTree as ET
 import requests
 
 import PySimpleGUI as sg
-#import tkinter as tk
+import tkinter as tk
 
 logo = """
  __ __ _  _ __  _ _   _____ ___  __ __   ____   ____  ___   _
@@ -25,11 +25,11 @@ For deployment, increase while loop count or otherwise create a better loop.
 """
 
 ###  Global Variables for Window creation via tkinter and PySimpleGUI  ###
-#monitor = tk.Tk()
-height = 768
-width = 1366
-#h_ratio = (monitor.winfo_screenheight() / height)
-#w_ratio = (monitor.winfo_screenwidth() / width)
+monitor = tk.Tk()
+height = 900
+width = 1600
+h_ratio = (monitor.winfo_screenheight() / height)
+w_ratio = (monitor.winfo_screenwidth() / width)
 stopList = ["13893", "13892", "16089", "16090", "16088"]
 predict = {}
 testurl = "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId="
