@@ -3,6 +3,7 @@
 import time
 import xml.etree.ElementTree as ET
 import requests
+import os
 
 import PySimpleGUI as sg
 import tkinter as tk
@@ -25,6 +26,7 @@ For deployment, increase while loop count or otherwise create a better loop.
 """
 
 ###  Global Variables for Window creation via tkinter and PySimpleGUI  ###
+os.system("export DISPLAY=:0")  #Ham fisted DISPLAY env variable change for tk.
 monitor = tk.Tk()
 height = 900
 width = 1600
@@ -67,9 +69,11 @@ def parse_xml():    # working generator function.
                 min_list = []
                 min_count = 0
                 for elems in predict_list:
-                    if min_count < 2:
+                    if min_count < 2: # Stops appending at 2 entries
                         min_list.append(elems.get('minutes'))
                         min_count += 1
+                    elif len(predict_list) < 2:
+                        min_list.append('Min')
                     else:
                         min_list.append('Min')
                         break
@@ -77,11 +81,14 @@ def parse_xml():    # working generator function.
                 route = i.get('routeTag')
                 stop = i.get('stopTitle')
                 direct = j.get('title')
-                row_data.append(route)
-                row_data.append(direct)
-                row_data.append(stop)
-                row_data.append(min_list)
-                yield (row_data)
+                if "Presidio" in stop and "Presidio" in direct:
+                    continue
+                else:
+                    row_data.append(route)
+                    row_data.append(direct)
+                    row_data.append(stop)
+                    row_data.append(min_list)
+                    yield (row_data)
         except IndexError:
             print("No 'direction' tag in " + i.get('routeTitle'))
 
@@ -114,13 +121,13 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',
                 [sg.Table(values=table_data,
                             headings=table_headers,
                             max_col_width=999,
-                            font="Helvitica " + str(int(20*w_ratio)) + " bold",
+                            font="Helvitica " + str(int(22*w_ratio)) + " bold",
                             auto_size_columns=False,
                             col_widths=[int(7*w_ratio),int(55*w_ratio),int(50*w_ratio),int(38*w_ratio)],
                             justification='center',
                             num_rows=min(len(table_data), 14),
                             hide_vertical_scroll=True,
-                            row_height=int(40*h_ratio),
+                            row_height=int(70*h_ratio),
                             key='table')
                             ]]
 
@@ -134,7 +141,7 @@ display = sg.Window('Transit Times',
                     )
 print("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
 count = 0
-while True:
+while count < 2:
     table_data = populate_table()
     count += 1
     print("Iteration: " + str(count) + " of 1000. Test capped at 1000.")
