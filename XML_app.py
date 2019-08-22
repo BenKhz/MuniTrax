@@ -30,7 +30,7 @@ height = 900
 width = 1600
 h_ratio = (monitor.winfo_screenheight() / height)
 w_ratio = (monitor.winfo_screenwidth() / width)
-stopList = ["13893", "13892", "16089", "16090", "16088"]
+stopList = ["13893", "13892", "16089", "16088"]
 predict = {}
 testurl = "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId="
 table_headers = ["Route", "Direction", "Stop", "Departures"]
@@ -116,7 +116,7 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',
                             max_col_width=999,
                             font="Helvitica " + str(int(20*w_ratio)) + " bold",
                             auto_size_columns=False,
-                            col_widths=[int(5*w_ratio),int(55*w_ratio),int(50*w_ratio),int(40*w_ratio)],
+                            col_widths=[int(7*w_ratio),int(55*w_ratio),int(50*w_ratio),int(38*w_ratio)],
                             justification='center',
                             num_rows=min(len(table_data), 14),
                             hide_vertical_scroll=True,
