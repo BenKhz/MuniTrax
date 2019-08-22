@@ -16,8 +16,8 @@ logo = """
 
 github.com/BenKhz/MuniTrax
 
-If you are seeing this, it means the iterator count has ended,
-and the XML_app.py scripts needs to be run again.
+If you are seeing this, it means the iterator <count> has ended the main
+while loop, andthe XML_app.py scripts needs to be run again.
 
 For testing the while loop counter is set for 2 iterations.
 
@@ -27,13 +27,12 @@ For deployment, increase while loop count or otherwise create a better loop.
 
 ###  Global Variables for Window creation via tkinter and PySimpleGUI  ###
 os.system("export DISPLAY=:0")  #Ham fisted DISPLAY env variable change for tk.
-monitor = tk.Tk()
-height = 900
+monitor = tk.Tk()  # instance of tk to get monitor resolution.
+height = 900  # Initial GUI window designed for 1600X900 resolution.
 width = 1600
-h_ratio = (monitor.winfo_screenheight() / height)
+h_ratio = (monitor.winfo_screenheight() / height)  # make ratio for autoresize.
 w_ratio = (monitor.winfo_screenwidth() / width)
-stopList = ["13893", "13892", "16089", "16088"]
-predict = {}
+stopList = ["13893", "13892", "16089", "16088"]  # List of Stop IDs.
 testurl = "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId="
 table_headers = ["Route", "Direction", "Stop", "Departures"]
 greeting_text = "Welcome to the Jewish Community Center of San Francisco"
@@ -112,7 +111,7 @@ def populate_table():
 
 table_data = populate_table()   # initial table population.
 
-table_form = [[sg.Image(filename=r'./JCCSF.png',
+table_form = [[sg.Image(filename=r'./JCCSF.png',  # talbe setup for GUI..
                         size=(208,173)),
                 sg.Text(greeting_text,
                             font="Helvitica " + str(int(28*w_ratio)) + " bold",
@@ -132,7 +131,7 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',
                             ]]
 
 
-display = sg.Window('Transit Times',
+display = sg.Window('Transit Times',  # GUI window containing table setup.
                     table_form,
                     size=(int(width*w_ratio) ,int(height*h_ratio)),
                     no_titlebar=True,
@@ -141,7 +140,7 @@ display = sg.Window('Transit Times',
                     )
 print("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
 count = 0
-while True:
+while count True:  # Main Loop. Change to while count < x for testing.
     table_data = populate_table()
     count += 1
     print("Iteration: " + str(count) + " of 1000. Test capped at 1000.")
@@ -149,6 +148,5 @@ while True:
     display.FindElement('table').Update(values=table_data,
                                 num_rows=min(len(table_data), 14)
                                 )
-print(logo)
-time.sleep(2)
 display.Close()
+print(logo)  # Print logo in terminal after while loop closes.
