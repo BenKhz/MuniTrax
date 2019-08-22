@@ -72,7 +72,7 @@ def parse_xml():    # working generator function.
                     if min_count < 2: # Stops appending at 2 entries
                         min_list.append(elems.get('minutes'))
                         min_count += 1
-                    elif len(predict_list) < 2:
+                    elif len(min_list) < 2:
                         min_list.append('Min')
                     else:
                         min_list.append('Min')
