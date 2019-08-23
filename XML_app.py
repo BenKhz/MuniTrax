@@ -81,7 +81,8 @@ def parse_xml():    # working generator function.
                 stop = i.get('stopTitle')
                 direct = j.get('title')
                 if "Presidio" in stop and "Presidio" in direct:
-                    continue
+                    if "Park" not in stop:
+                        continue
                 else:
                     row_data.append(route)
                     row_data.append(direct)
