@@ -122,7 +122,7 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',  # talbe setup for GUI..
                             max_col_width=999,
                             font="Helvitica " + str(int(22*w_ratio)) + " bold",
                             auto_size_columns=False,
-                            col_widths=[int(7*w_ratio),int(55*w_ratio),int(50*w_ratio),int(38*w_ratio)],
+                            col_widths=[int(9*w_ratio),int(55*w_ratio),int(50*w_ratio),int(36*w_ratio)],
                             justification='center',
                             num_rows=min(len(table_data), 14),
                             hide_vertical_scroll=True,
