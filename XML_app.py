@@ -140,7 +140,7 @@ display = sg.Window('Transit Times',  # GUI window containing table setup.
                     )
 print("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
 count = 0
-while count True:  # Main Loop. Change to while count < x for testing.
+while True:  # Main Loop. Change to while count < x for testing.
     table_data = populate_table()
     count += 1
     print("Iteration: " + str(count) + " of 1000. Test capped at 1000.")
