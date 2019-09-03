@@ -25,8 +25,6 @@ For deployment, increase while loop count or otherwise create a better loop.
 
 """
 
-###  Global Variables for Window creation via tkinter and PySimpleGUI  ###
-os.system("export DISPLAY=:0")  #Ham fisted DISPLAY env variable change for tk.
 monitor = tk.Tk()  # instance of tk to get monitor resolution.
 height = 900  # Initial GUI window designed for 1600X900 resolution.
 width = 1600
