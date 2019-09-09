@@ -17,7 +17,7 @@ logo = """
 github.com/BenKhz/MuniTrax
 
 If you are seeing this, it means the iterator <count> has ended the main
-while loop, andthe XML_app.py scripts needs to be run again.
+while loop, and the XML_app.py scripts needs to be run again.
 
 For testing the while loop counter is set for 2 iterations.
 
@@ -144,14 +144,16 @@ display = sg.Window('Transit Times',  # GUI window containing table setup.
                     keep_on_top=True,
                     )
 print("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
-count = 0
+# count = 0
 while True:  # Main Loop. Change to while count < x for testing.
     table_data = populate_table()
-    count += 1
-    print("Iteration: " + str(count) + " of 1000. Test capped at 1000.")
+#    count += 1
     event, values = display.Read(timeout=10000)
     display.FindElement('table').Update(values=table_data,
                                 num_rows=min(len(table_data), 14)
                                 )
-display.Close()
-print(logo)  # Print logo in terminal after while loop closes.
+# display.Close()
+with open('python.log', 'w') as logfile:
+    logfile.write(logo)
+    logfile.write("While loop exited at : " + time.asctime())
+    logfile.close()
