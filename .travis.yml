@@ -1,0 +1,19 @@
+language: python
+sudo: required
+services:
+  - docker
+python:
+  - '2.7'
+jobs:
+  include:
+    - script:
+      - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+      - docker build -f Dockerfile.raspberrypi3 .
+after_success:
+    - codeclimate-test-reporter --token $CODECLIMATE_REPO_TOKEN
+    - if [ $TRAVIS_BRANCH == 'master' ] ;
+      then echo "Host git.balena.io" >> ~/.ssh/config;
+      echo "    StrictHostKeyChecking no" >> ~/.ssh/config;
+      echo "    IdentityFile ~/.ssh/balena_deploy" >> ~/.ssh/config;
+      git remote add testing ${RESIN_TESTING_REMOTE};
+      git push --force testing test:master; fi

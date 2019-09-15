@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<body copyright="All data copyright San Francisco Muni 2019.">
+<predictions agencyTitle="San Francisco Muni" routeTitle="2-Sutter/Clement" routeTag="2" stopTitle="California St &amp; Presidio Ave" stopTag="3893">
+  <direction title="Inbound to Mission + Main">
+  <prediction epochTime="1568512373713" seconds="1018" minutes="16" isDeparture="false" affectedByLayover="true" dirTag="2____I_F00" vehicle="8430" block="0205" tripTag="8945719" />
+  <prediction epochTime="1568513522143" seconds="2167" minutes="36" isDeparture="false" affectedByLayover="true" dirTag="2____I_F00" vehicle="8836" block="0201" tripTag="8945720" />
+  <prediction epochTime="1568514722143" seconds="3367" minutes="56" isDeparture="false" affectedByLayover="true" dirTag="2____I_F00" vehicle="8870" block="0202" tripTag="8945736" />
+  </direction>
+</predictions>
+<predictions agencyTitle="San Francisco Muni" routeTitle="1-California" routeTag="1" stopTitle="California St &amp; Presidio Ave" stopTag="3893">
+  <direction title="Inbound to Drumm + Clay">
+  <prediction epochTime="1568512000010" seconds="645" minutes="10" isDeparture="false" dirTag="1____I_F00" vehicle="5819" block="0107" tripTag="8943450" />
+  <prediction epochTime="1568512592047" seconds="1237" minutes="20" isDeparture="false" affectedByLayover="true" dirTag="1____I_F00" vehicle="5782" block="0101" tripTag="8943451" />
+  <prediction epochTime="1568513280721" seconds="1925" minutes="32" isDeparture="false" affectedByLayover="true" dirTag="1____I_F00" vehicle="5861" block="0105" tripTag="8943453" />
+  <prediction epochTime="1568513986767" seconds="2631" minutes="43" isDeparture="false" affectedByLayover="true" dirTag="1____I_F00" vehicle="5787" block="0112" tripTag="8943454" />
+  <prediction epochTime="1568514706767" seconds="3351" minutes="55" isDeparture="false" affectedByLayover="true" dirTag="1____I_F00" vehicle="5764" block="0102" tripTag="8943455" />
+  </direction>
+  <direction title="Inbound to Presidio Avenue">
+  <prediction epochTime="1568512611507" seconds="1256" minutes="20" isDeparture="false" affectedByLayover="true" dirTag="1____I_E00" vehicle="5814" block="0111" tripTag="8943452" />
+  <prediction epochTime="1568513344423" seconds="1989" minutes="33" isDeparture="false" affectedByLayover="true" dirTag="1____I_E00" vehicle="5793" block="0108" tripTag="8943521" />
+  <prediction epochTime="1568514091707" seconds="2736" minutes="45" isDeparture="false" affectedByLayover="true" dirTag="1____I_E00" vehicle="5761" block="0115" tripTag="8943482" />
+  <prediction epochTime="1568515531707" seconds="4176" minutes="69" isDeparture="false" affectedByLayover="true" dirTag="1____I_E00" vehicle="5840" block="0106" tripTag="8943456" />
+  </direction>
+</predictions>
+<predictions agencyTitle="San Francisco Muni" routeTitle="1BX-California B Express" routeTag="1BX" stopTitle="California St &amp; Presidio Ave" stopTag="3893" dirTitleBecauseNoPredictions="Inbound to the Financial District">
+</predictions>
+</body>

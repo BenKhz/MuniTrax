@@ -2,3 +2,4 @@ Dockerfile.template
 XML_app.bak
 TempXML.xml
 autostart.bak
+__pycache__

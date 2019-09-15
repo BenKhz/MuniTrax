@@ -1,18 +1,23 @@
+FROM balenalib/raspberrypi3:buster as TEST_PHASE
+COPY os_packages /os_packages
+RUN cat /os_packages | xargs install_packages
+
+COPY . /src
+
+RUN pip3 install -r /src/requirements-test.txt
+
+WORKDIR /src/
+
+RUN py.test
+
+##########
 FROM balenalib/raspberrypi3:buster
 
 # Install desktop environment
 COPY requirements.txt /
 
-RUN install_packages xserver-xorg-core \
-    xinit lxsession desktop-file-utils \
-    raspberrypi-ui-mods rpd-icons \
-    gtk2-engines-clearlookspix \
-    python3 \
-    python3-tk \
-    python3-pip \
-    matchbox-keyboard \
-    xterm
-
+COPY os_packages /os_packages
+RUN cat /os_packages | xargs install_packages
 RUN pip3 install -r requirements.txt
 
 # disable lxpolkit popup warning

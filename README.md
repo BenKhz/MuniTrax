@@ -1,4 +1,7 @@
 # MUNITRAXXOR!
+
+[![Build Status](https://travis-ci.org/BenKhz/MuniTrax.svg?branch=master)](https://travis-ci.org/BenKhz/MuniTrax)
+
 * In development. Awaiting abstraction, clean up, and environment
   variable implementation. Currently configured for a very narrow scope.
 

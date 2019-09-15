@@ -1,14 +1,15 @@
+"""Main module for MuniTraxx."""
 #! usr/bin/python
 
 import time
-import xml.etree.ElementTree as ET
-import requests
-import os
-
-import PySimpleGUI as sg
 import tkinter as tk
 
-logo = """
+import requests
+import PySimpleGUI as sg
+
+from .munitrax import XmlParser
+
+logo = r"""
  __ __ _  _ __  _ _   _____ ___  __ __   ____   ____  ___   _
 |  V  | || |  \| | | |_   _| _ \/  \\\ \_/ /\ \_/ /__\| _ \ / \\
 | \_/ | \/ | | ' | |   | | | v / /\ |> , <  > , < \/ | v / \_/
@@ -46,57 +47,6 @@ def getRoute(url):  # Working API retrieval
         inFile.close()
 
 
-def parse_xml():    # working generator function.
-    '''
-    Creates a generator.
-        Parses single XML file and finds selected elements.
-
-    Yields: A list on each specific route with indices as follows:
-
-        [<route number>,<direction>,<Stop location>,<nested list of departs>]
-    '''
-
-    tree = ET.parse('TempXML.xml')
-    root = tree.getroot()
-    #    table_data = []
-    for i in root.findall("./predictions"):
-        try:
-            for j in i.findall('./direction'):
-                predict_list = j.findall('./prediction')
-                min_list = []
-                min_count = 0
-                for elems in predict_list:
-                    if min_count < 2: # Stops appending at 2 entries
-                        min_list.append(elems.get('minutes'))
-                        min_count += 1
-                    elif len(min_list) < 2:
-                        min_list.append('Min')
-                    else:
-                        min_list.append('Min')
-                        break
-                row_data = []
-                route = i.get('routeTag')
-                stop = i.get('stopTitle')
-                direct = j.get('title')
-                if "Presidio" in stop and "Presidio" in direct:
-                    if "Park" in direct:
-                        row_data.append(route)
-                        row_data.append(direct)
-                        row_data.append(stop)
-                        row_data.append(min_list)
-                        yield (row_data)
-                    else:
-                        continue
-                else:
-                    row_data.append(route)
-                    row_data.append(direct)
-                    row_data.append(stop)
-                    row_data.append(min_list)
-                    yield (row_data)
-        except IndexError:
-            print("No 'direction' tag in " + i.get('routeTitle'))
-
-
 def populate_table():
     '''
     Iterate getRoute() and parse_xml() to create complete table.
@@ -108,7 +58,7 @@ def populate_table():
     table_data = []
     for s in stopList:  # Working loop with Generator.
         getRoute(testurl + s)
-        for x in parse_xml():
+        for x in XmlParser.parse_xml("TempXML.xml"):
             table_data.append(x)
     table_data.sort()
     return table_data  # working combined getRoute(),parse_xml(),with iterate.
