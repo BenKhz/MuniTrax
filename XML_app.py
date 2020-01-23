@@ -66,18 +66,19 @@ def parse_xml():    # working generator function.
                     min_list = []
                     min_count = 0
                     for elems in predict_list:
-                        if min_count < 2: # Stops appending at 2 entries
+                        if min_count < 2:  # Stops appending at 2 entries
                             min_list.append(elems.get('minutes'))
                             min_count += 1
-                        elif len(min_list) < 2:
-                            min_list.append('Min')
                         else:
-                            min_list.append('Min')
                             break
+                    min_list.append('Min')
+
                     row_data = []
                     route = i.get('routeTag')
                     stop = i.get('stopTitle')
                     direct = j.get('title')
+                    # Custom Logic filtering redundancy unique to these stops
+                    # Leaving in may or may not effect your application.
                     if "Presidio" in stop and "Presidio" in direct:
                         if "Park" in direct:
                             row_data.append(route)
@@ -147,16 +148,14 @@ display = sg.Window('Transit Times',  # GUI window containing table setup.
                     keep_on_top=True,
                     )
 print("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
-# count = 0
-while True:  # Main Loop. Change to while count < x for testing.
-    table_data = populate_table()
-#    count += 1
-    event, values = display.Read(timeout=10000)
-    display.FindElement('table').Update(values=table_data,
-                                num_rows=min(len(table_data), 14)
-                                )
-# display.Close()
-with open('python.log', 'w') as logfile:
-    logfile.write(logo)
-    logfile.write("While loop exited at : " + time.asctime())
-    logfile.close()
+count = 0
+while count < 20:  # Main Loop. Change to while count < x for testing.
+    count += 1
+    event, values = display.Read(timeout=5000)
+    time.sleep(5)
+    display.FindElement('table').Update(values=populate_table())
+
+    with open('python.log', 'w') as logfile:
+        logfile.write(logo)
+        logfile.write("While loop exited at : " + time.asctime())
+        logfile.close()
