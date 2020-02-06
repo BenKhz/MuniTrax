@@ -77,9 +77,9 @@ display = sg.Window('Transit Times',  # GUI window containing table setup.
                     keep_on_top=True,
                     )
 logging.info("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
-count = 0
-while count < 2:  # Main Loop. Change to while count < x for testing.
-    count += 1
+# count = 0
+while True:  # Main Loop. Change to while count < x for testing.
+    # count += 1
     event, values = display.Read(timeout=5000)
     time.sleep(5)
     display.FindElement('table').Update(values=helper.populate_table())
