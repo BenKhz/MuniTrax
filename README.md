@@ -21,7 +21,7 @@
 
 1. Locate your own unique stop tag for each bus stop.
 1. Clone down this repository and add the Resin.io app as a git remote.
-1. Populate <stop_list> global variable in XML_app.py with list of unique stop IDs.
+1. Populate <stop_list> global variable in <helper.py> with list of unique stop IDs.
   Future development will be to configure your environment variables according to
    your use case (see table below and the Implementation Notes section).
 1. Push this repository to your Resin.io app

@@ -2,3 +2,5 @@ Dockerfile.template
 XML_app.bak
 TempXML.xml
 autostart.bak
+bash-crash.log
+muni.log*
