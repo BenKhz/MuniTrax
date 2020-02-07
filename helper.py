@@ -4,18 +4,28 @@ import requests, logging, time
 
 import xml.etree.ElementTree as ET
 
+
 stopList = ["13893", "13892", "16089", "16088"]  # List of Stop IDs.
 testurl = "http://webservices.nextbus.com/service/publicXMLFeed?command=predictions&a=sf-muni&stopId="
 
 def getRoute(url):  # Working API retrieval
     '''Get requests a URL to local temp file named TempXML.xml'''
     logging.info("Attempting API call for stop id:" + url[-5:])
-    with open("TempXML.xml", 'w') as inFile:
+    try:
+        with open("TempXML.xml", 'w') as inFile:
 
-        r = requests.get(url)
-        inFile.write(r.text)
-        inFile.close()
-    logging.info("API response received and stored as TEMP_XML.xml")
+            r = requests.get(url)
+            inFile.write(r.text)
+            inFile.close()
+        logging.info("API response received and stored as TEMP_XML.xml")
+    except ConnectionError as e:
+        logging.warn(str(e) + " occured in getRoute()")
+        time.sleep(60)
+    except:
+        logging.info("Bare exception error occurred in getRoute()")
+        time.sleep(60)
+
+
 def parse_xml():    # working generator function.
     '''
     Creates a generator.
