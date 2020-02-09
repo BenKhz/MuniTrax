@@ -22,7 +22,7 @@ def getRoute(url):  # Working API retrieval
         logging.warn(str(e) + " occured in getRoute()")
         time.sleep(60)
     except:
-        logging.info("Bare exception error occurred in getRoute()")
+        logging.warn("Bare exception error occurred in getRoute()")
         time.sleep(60)
 
 

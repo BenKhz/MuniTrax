@@ -61,13 +61,21 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',  # talbe setup for GUI..
 
 # --- Logging setup --- #
 root = logging.getLogger()
-root.setLevel(logging.INFO)
-
+root.setLevel(logging.DEBUG)
+# --- Establishing log formatting --- #
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-fileHandler = logging.handlers.RotatingFileHandler('muni.log', maxBytes=3200, backupCount=4)
+# --- Setting up rotating file handler for DEBUG level logs --- #
+fileHandler = logging.handlers.RotatingFileHandler('muni.log', maxBytes=6400, backupCount=5)
 fileHandler.setLevel(logging.DEBUG)
 fileHandler.setFormatter(formatter)
+# --- setting up StreamHandler to send only Warn or above to stderr only --- #
+stdErrorHandler= logging.StreamHandler(sys.stderr)
+stdErrorHandler.setLevel(logging.WARN)
+stdErrorHandler.setFormatter(formatter)
+# --- adding both new handlers to the root logger --- #
+root.addHandler(stdErrorHandler)
 root.addHandler(fileHandler)
+
 
 display = sg.Window('Transit Times',  # GUI window containing table setup.
                     table_form,
