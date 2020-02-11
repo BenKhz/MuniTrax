@@ -79,7 +79,7 @@ def parse_xml():    # working generator function.
                 logging.info("No 'direction' tag in " + i.get('routeTitle'))
         logging.info("Current XML page parsed successfully.")
     except ET.ParseError as e:
-        logging.info("ET.ParseError " + str(e) + " occurred. Check bash-crash.log?")
+        logging.warning("ET.ParseError " + str(e) + " occurred. Check bash-crash.log?")
     except BaseException as baseE:
         logging.warning('%(baseE)s occured. Check crash.log?')
 
