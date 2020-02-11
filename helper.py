@@ -19,10 +19,10 @@ def getRoute(url):  # Working API retrieval
             inFile.close()
         logging.info("API response received and stored as TEMP_XML.xml")
     except ConnectionError as e:
-        logging.warn(str(e) + " occured in getRoute()")
+        logging.warning(str(e) + " occured in getRoute()")
         time.sleep(60)
     except:
-        logging.warn("Bare exception error occurred in getRoute()")
+        logging.warning("Bare exception error occurred in getRoute()")
         time.sleep(60)
 
 
@@ -81,7 +81,7 @@ def parse_xml():    # working generator function.
     except ET.ParseError as e:
         logging.info("ET.ParseError " + str(e) + " occurred. Check bash-crash.log?")
     except BaseException as baseE:
-        logging.warn('%(baseE)s occured. Check crash.log?')
+        logging.warning('%(baseE)s occured. Check crash.log?')
 
 
 def populate_table():

@@ -61,17 +61,19 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',  # talbe setup for GUI..
 
 # --- Logging setup --- #
 root = logging.getLogger()
-root.setLevel(logging.DEBUG)
+root.setLevel(logging.INFO)
 # --- Establishing log formatting --- #
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-# --- Setting up rotating file handler for DEBUG level logs --- #
+# --- Setting up rotating file handler for INFO level logs --- #
 fileHandler = logging.handlers.RotatingFileHandler('muni.log', maxBytes=6400, backupCount=5)
-fileHandler.setLevel(logging.DEBUG)
+fileHandler.setLevel(logging.WARN)
 fileHandler.setFormatter(formatter)
 # --- setting up StreamHandler to send only Warn or above to stderr only --- #
-stdErrorHandler= logging.StreamHandler(sys.stderr)
+stdErrorHandler = logging.StreamHandler(sys.stderr)
 stdErrorHandler.setLevel(logging.WARN)
 stdErrorHandler.setFormatter(formatter)
+# stdErrorHandler.setLevel(logging.WARN)
+# stdErrorHandler.setFormatter(formatter)
 # --- adding both new handlers to the root logger --- #
 root.addHandler(stdErrorHandler)
 root.addHandler(fileHandler)
@@ -86,9 +88,10 @@ display = sg.Window('Transit Times',  # GUI window containing table setup.
                     )
 logging.info("Screen Dimensions set to: " + str(width * w_ratio) + "x" + str(height*h_ratio))
 # count = 0
+
 while True:  # Main Loop. Change to while count < x for testing.
     # count += 1
     event, values = display.Read(timeout=5000)
     time.sleep(5)
     display.FindElement('table').Update(values=helper.populate_table())
-logging.info("Main While Loop exited and script finished without error.")
+logging.warning("Main While Loop exited and script finished without error.")
