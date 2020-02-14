@@ -53,7 +53,7 @@ table_form = [[sg.Image(filename=r'./JCCSF.png',  # talbe setup for GUI..
                             auto_size_columns=False,
                             col_widths=[int(9*w_ratio),int(55*w_ratio),int(50*w_ratio),int(36*w_ratio)],
                             justification='center',
-                            num_rows=min(14),
+                            num_rows=14,
                             hide_vertical_scroll=True,
                             row_height=int(70*h_ratio),
                             key='table')
@@ -66,13 +66,13 @@ root.setLevel(logging.INFO)
 formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 # --- Setting up rotating file handler for INFO level logs --- #
 fileHandler = logging.handlers.RotatingFileHandler('muni.log', maxBytes=6400, backupCount=5)
-fileHandler.setLevel(logging.warning)
+fileHandler.setLevel(logging.WARNING)
 fileHandler.setFormatter(formatter)
 # --- setting up StreamHandler to send only Warn or above to stderr only --- #
-stdErrorHandler = logging.StreamHandler(sys.stderr)
-stdErrorHandler.setLevel(logging.warning)
+# stdErrorHandler = logging.StreamHandler(sys.stderr)
+# stdErrorHandler.setLevel(logging.warning)
 # --- adding both new handlers to the root logger --- #
-root.addHandler(stdErrorHandler)
+# root.addHandler(stdErrorHandler)
 root.addHandler(fileHandler)
 
 
